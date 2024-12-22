@@ -1,1 +1,1 @@
-BookBot is my first project!
+First time with python... so far so good :)
