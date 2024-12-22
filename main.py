@@ -1,10 +1,16 @@
-
-
 def main():
-    with open('./books/frankenstein.txt') as f:
-        file_contents = f.read()
+    data = get_data('./books/frankenstein.txt')
+    ammount_words = word_count(data)
+    print(ammount_words)
 
-    print(file_contents)
+
+def get_data(file):
+    with open(file) as f:
+        return f.read()
+
+
+def word_count(string=''):
+    return len(string.split())
 
 
 main()
