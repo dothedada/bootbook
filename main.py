@@ -1,33 +1,21 @@
+import sys
+from stats import word_count, char_frecuency
+
+
 def main():
-    data = get_data('./books/frankenstein.txt')
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    data = get_data(sys.argv[1])
     ammount_words = word_count(data)
     char_count = char_frecuency(data)
-    report_printer(ammount_words, sort_chars(char_count))
+    report_printer(ammount_words, sort_chars(char_count), sys.argv[1])
 
 
 def get_data(file):
     with open(file) as f:
         return f.read()
-
-
-def word_count(string):
-    return len(string.split())
-
-
-def char_frecuency(string=''):
-    chars = {}
-    for char in string:
-        if not char.isalpha():
-            continue
-
-        char_lower = char.lower()
-
-        if char_lower not in chars:
-            chars[char_lower] = 0
-
-        chars[char_lower] += 1
-
-    return chars
 
 
 def sort_chars(chars={}):
@@ -40,15 +28,17 @@ def sort_chars(chars={}):
     return sorted_chars
 
 
-def report_printer(words_count, chars_count):
-    print('--- Begin report of books/frankenstein.txt ---')
-    print(f'{words_count} words found in the document')
-    print('')
+def report_printer(words_count, chars_count, path):
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {path}...")
+    print("----------- Word Count ----------")
+    print(f"Found {words_count} total words")
+    print("--------- Character Count -------")
 
     for char in chars_count:
-        print(f"The '{char}' character was found {chars_count[char]} times")
+        print(f"{char}: {chars_count[char]}")
 
-    print('--- End report ---')
+    print("============= END ===============")
 
 
 main()
