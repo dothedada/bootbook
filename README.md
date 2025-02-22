@@ -1,1 +1,1 @@
-First time with python... so far so good :)
+BookBot is my first [Boot.dev](https://www.boot.dev) project!
